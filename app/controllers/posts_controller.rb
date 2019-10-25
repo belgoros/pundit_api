@@ -46,6 +46,9 @@ class PostsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def post_params
-      params.require(:post).permit(:title, :body, :user_id)
+      ActiveModelSerializers::Deserialization.jsonapi_parse!(
+        params,
+        only: [:title, :body, :user]
+      )
     end
 end
