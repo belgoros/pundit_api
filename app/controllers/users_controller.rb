@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-      render jsonapi: @users
+    render jsonapi: @users
   end
 end
