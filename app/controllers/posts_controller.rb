@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1
   def update
-    if @post.update(post_params)
+    if @post.update(permitted_attributes(@post))
       render jsonapi: @post
     else
       render jsonapi: @post.errors, status: :unprocessable_entity
@@ -39,13 +39,19 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def post_params
-      params.require(:post).permit(:title, :body, :user_id)
-    end
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def post_params
+    ActiveModelSerializers::Deserialization.jsonapi_parse(
+      params,
+      only: [:title, :body, :user]
+    )
+  end
+
+  def pundit_params_for(_record)
+    params.fetch(:data, {}).fetch(:attributes, {})
+  end
 end
