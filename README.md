@@ -1,24 +1,22 @@
-# README
+## Rails API app usig Pundit authorization
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Installation
+- run `bundle`
+- run `rails db:setup && rails db:seed`
 
-Things you may want to cover:
+Check the policies available for `Post`.
+You can try to execute a `PATCH` request to `http://localhost:3000/posts/1` with the below JSON data:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```json
+{
+  "data": {
+    "type": "posts",
+    "id": "1",
+    "attributes": {
+      "body": "Some crazy text",
+      "title": "new title"
+    }
+  }
+}
+```
+and see the authorization in action.
