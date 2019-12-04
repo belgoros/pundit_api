@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_164216) do
+ActiveRecord::Schema.define(version: 2019_12_04_165454) do
 
   create_table "frameworks", force: :cascade do |t|
     t.string "name"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2019_12_04_164216) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "framework_id"
+    t.index ["framework_id"], name: "index_posts_on_framework_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
