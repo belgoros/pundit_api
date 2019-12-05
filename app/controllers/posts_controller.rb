@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
-
+    authorize @post
     if @post.save
       render jsonapi: @post, status: :created, location: @post
     else
@@ -45,13 +45,13 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    ActiveModelSerializers::Deserialization.jsonapi_parse(
+    ActiveModelSerializers::Deserialization.jsonapi_parse!(
       params,
-      only: [:title, :body, :user]
+      only: [:body, :framework, :title, :user]
     )
   end
 
   def pundit_params_for(_record)
-    params.fetch(:data, {}).fetch(:attributes, {})
+    ActionController::Parameters.new(post_params)
   end
 end
