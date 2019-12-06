@@ -11,7 +11,7 @@ class ApplicationController < ActionController::API
   # You can a user with another role, see the provided below methods:
   # admin_user, natioal_usr or local_user
   def pundit_user
-    admin_user
+    local_user
   end
 
   def user_not_authorized
@@ -24,8 +24,7 @@ class ApplicationController < ActionController::API
         [
           { message: 'You are not authorized to perform this action.' }
         ],
-      title:
-        'Invalid Attribute'
+      title: 'Invalid Attribute'
     }
   end
 
