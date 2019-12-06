@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1
   def update
-    if @post.update(permitted_attributes(@post))
+    if @post.update_attributes(permitted_attributes(@post))
       render jsonapi: @post
     else
       render jsonapi: @post.errors, status: :unprocessable_entity
