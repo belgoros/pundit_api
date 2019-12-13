@@ -26,6 +26,7 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1
   def update
+    authorize @post
     if @post.update_attributes(permitted_attributes(@post))
       render jsonapi: @post
     else
