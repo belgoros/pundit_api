@@ -22,9 +22,11 @@ class ApplicationController < ActionController::API
     {
       errors:
         [
-          { message: 'You are not authorized to perform this action.' }
-        ],
-      title: 'Invalid Attribute'
+          {
+            status: :unauthorized,
+            detail: 'You are not authorized to perform this action.'
+          }
+        ]
     }
   end
 
