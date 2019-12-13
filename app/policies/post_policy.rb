@@ -7,6 +7,10 @@ class PostPolicy < ApplicationPolicy
     end
   end
 
+  def update?
+    user.admin? || user.national? || user.local?
+  end
+
   def create?
     user.admin?
   end
