@@ -5,7 +5,7 @@ ruby '2.6.5'
 
 gem 'active_model_serializers', '~> 0.10.6'
 gem 'bootsnap',                 '>= 1.1.0', require: false
-gem 'puma',                     '~> 4.2'
+gem 'puma',                     '~> 4.3'
 gem 'pundit',                   '~> 2.1'
 gem 'rack-cors',                '~> 1.0'
 gem 'rails',                    '~> 5.2.3'
